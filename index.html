@@ -22,7 +22,7 @@
     }
     .memo {
       background-color: #1a1a1a;
-      border-left: 4px solid #32a9cd;
+      border-left: 4px solid #666;
       padding: 1.5em;
       margin: 2em auto;
       max-width: 800px;
@@ -37,6 +37,26 @@
     }
     .memo p {
       margin: 0.8em 0;
+    }
+    .back-button {
+      display: block;
+      width: 200px;
+      margin: 2em auto 0;
+      padding: 10px 20px;
+      background-color: #666;
+      color: #f5f5f5;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
+      transition: background-color 0.3s;
+    }
+    .back-button:hover {
+      background-color: #444;
     }
     footer {
       margin-top: 3em;
@@ -62,6 +82,8 @@
     <p>そこで、解職覚悟で第二版から148-149ページを落丁させ、お問い合わせに来た読者にもPDFを見てもらうように仕向けた。</p>
     <p>減給かな、クビかな。でも桐須さんが助かる確率が少しでも上がるなら僕はそれでいい。</p>
   </div>
+
+  <button class="back-button" onclick="history.back()">戻る</button>
 
   <footer>
     狭間書房 内部記録
