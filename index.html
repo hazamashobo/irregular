@@ -2,42 +2,177 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LIMINAL SPACE 100 イレギュラー対応 | 狭間書房</title>
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
     body {
       background-color: #111;
       color: #f5f5f5;
       font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
-      margin: 0;
-      padding: 3em;
-      line-height: 1.9;
+      line-height: 1.8;
     }
-    h1 {
+
+    /* ヘッダー */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 2em;
+      background-color: #666;
+      color: #fff;
+      flex-shrink: 0;
+      gap: 2em;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .title-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    .title-wrapper a {
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .title-wrapper a:hover h1 {
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      border: none;
+      font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
+      font-weight: 700;
+    }
+    .subtitle {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-size: 1em;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* 検索 */
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+    .search form {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .search input {
+      padding: 4px;
+      border: 2px solid #333;
+      border-radius: 4px;
+      width: 150px;
+      background-color: #fff;
+      color: #333;
+    }
+    .search input::placeholder {
+      color: #333aa;
+    }
+    .search button {
+      padding: 4px 6px;
+      border-radius: 4px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .search button:hover {
+      background-color: #222;
+    }
+
+    /* ナビゲーション */
+    nav {
+      text-align: center;
+      padding: 1em 0;
+      background-color: #f0f0f0;
+      flex-shrink: 0;
+      overflow-x: auto;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    nav a {
+      color: #003366;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    nav a:hover {
+      color: #666;
+    }
+    nav a.active {
+      color: #666;
+      border-bottom: 2px solid #666;
+    }
+
+    /* メインコンテンツ */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 0 2em;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    main > h1 {
       font-size: 1.8em;
       margin-bottom: 1em;
       border-bottom: 1px solid #444;
       padding-bottom: 0.4em;
       text-align: center;
       letter-spacing: 0.05em;
+      color: #f5f5f5;
     }
+
     .memo {
       background-color: #1a1a1a;
       border-left: 4px solid #666;
       padding: 1.5em;
       margin: 2em auto;
       max-width: 800px;
+      box-sizing: border-box;
     }
+
     .memo h2 {
       margin-top: 0;
       font-size: 1.2em;
-      border-left: 4px solid 
-      color: #666;
-;
+      color: #ffffff;
       margin-bottom: 1em;
     }
+
     .memo p {
       margin: 0.8em 0;
+      word-wrap: break-word;
     }
+
     .back-button {
       display: block;
       width: 200px;
@@ -54,39 +189,235 @@
       font-weight: bold;
       font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
       transition: background-color 0.3s;
+      box-sizing: border-box;
     }
+
     .back-button:hover {
       background-color: #444;
     }
-    footer {
+
+    .footer-info {
       margin-top: 3em;
       font-size: 0.9em;
       color: #aaa;
       text-align: right;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 2em;
+      box-sizing: border-box;
+    }
+
+    /* フッター */
+    footer {
+      background-color: #666;
+      color: #ffffff;
+      text-align: center;
+      padding: 1em;
+      flex-shrink: 0;
+      margin-top: auto;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      header {
+        padding: 1em;
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 1em;
+      }
+
+      header h1 {
+        font-size: 2em;
+      }
+
+      .title-wrapper {
+        width: 100%;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .search form {
+        width: 100%;
+        display: flex;
+      }
+
+      .search input {
+        width: 100%;
+        flex: 1;
+      }
+
+      nav a {
+        margin: 0 0.5em;
+        font-size: 0.9em;
+      }
+
+      main {
+        padding: 0 1em;
+        margin: 1em auto;
+      }
+
+      main > h1 {
+        font-size: 1.5em;
+        margin-bottom: 0.8em;
+      }
+
+      .memo {
+        padding: 1.2em;
+        margin: 1.5em auto;
+      }
+
+      .memo h2 {
+        font-size: 1.1em;
+      }
+
+      .memo p {
+        font-size: 0.95em;
+      }
+
+      .back-button {
+        width: 180px;
+        padding: 9px 18px;
+        font-size: 0.95em;
+      }
+
+      .footer-info {
+        padding: 0 1em;
+        margin-top: 2em;
+        font-size: 0.85em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        flex-direction: column;
+        gap: 0.5em;
+      }
+
+      header h1 {
+        font-size: 1.5em;
+      }
+
+      .subtitle {
+        font-size: 0.9em;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .search input {
+        width: 100%;
+        padding: 0.5em;
+      }
+
+      .search button {
+        padding: 0.5em 0.8em;
+        font-size: 0.9em;
+      }
+
+      nav a {
+        margin: 0 0.3em;
+        font-size: 0.8em;
+      }
+
+      main {
+        padding: 0 0.8em;
+        margin: 0.8em auto;
+      }
+
+      main > h1 {
+        font-size: 1.3em;
+        margin-bottom: 0.8em;
+        letter-spacing: 0.03em;
+      }
+
+      .memo {
+        padding: 1em;
+        margin: 1em auto;
+        border-left-width: 3px;
+      }
+
+      .memo h2 {
+        font-size: 1em;
+        margin-bottom: 0.8em;
+      }
+
+      .memo p {
+        font-size: 0.9em;
+        margin: 0.6em 0;
+      }
+
+      .back-button {
+        width: 160px;
+        padding: 8px 16px;
+        font-size: 0.9em;
+        margin-top: 1.5em;
+      }
+
+      .footer-info {
+        padding: 0 0.8em;
+        margin-top: 1.5em;
+        font-size: 0.8em;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>『LIMINAL SPACE 100』 イレギュラー対応</h1>
+  <header>
+    <div class="title-wrapper">
+      <a href="https://hazamashobo.github.io/main/index.html">
+        <h1>狭間書房</h1>
+        <p class="subtitle">Hazama Publishing</p>
+      </a>
+    </div>
+    <div class="search">
+      <form action="https://hazamashobo.github.io/result/" method="get">
+        <input type="text" id="searchInput" name="q" placeholder="キーワード入力">
+        <button type="submit">検索</button>
+      </form>
+    </div>
+  </header>
 
-  <div class="memo">
-    <h2>記録者：赤羽 義人</h2>
-    <p>弊社新刊『LIMINAL SPACE 100』について、</p>
-    <p>桐須さんから突然No.67のLiminal Space調査書のPDFがメールで送られてきた。</p>
-    <p>件名も本文も何もなく、連絡しても返信が返ってこない。</p>
-    <p>元々No.67は桐須さんが報告したLiminal Spaceだったから、差し替えて欲しいとのことだろうか？</p>
-    <p>下野さんや湯田さんもLiminal spaceを報告していたが、特に何も知らないらしい。</p>
-    <br>
-    <p>しかも発見者所感のただならぬ雰囲気。一体何が起こっているんだ？</p>
-    <p>まずは私が桐須さんの力になれないかと思ったが、何もわからなかった。</p>
-    <p>そこで、解職覚悟で第二版から148-149ページを落丁させ、お問い合わせに来た読者にもPDFを見てもらうように仕向けた。</p>
-    <p>減給かな、クビかな。でも桐須さんが助かる確率が少しでも上がるなら僕はそれでいい。</p>
-  </div>
+  <nav>
+    <a href="https://hazamashobo.github.io/main/index.html">ホーム</a>
+    <a href="https://hazamashobo.github.io/company/index.html">狭間書房について</a>
+    <a href="https://hazamashobo.github.io/books/index.html">刊行物</a>
+    <a href="https://hazamashobo.github.io/contact/index.html">お問い合わせ</a>
+  </nav>
 
-  <button class="back-button" onclick="history.back()">戻る</button>
+  <main>
+    <h1>『LIMINAL SPACE 100』 <br>イレギュラー対応</h1>
+
+    <div class="memo">
+      <h2>記録者：赤羽 義人</h2>
+      <p>弊社新刊『LIMINAL SPACE 100』について、</p>
+      <p>桐須さんから突然No.67のLiminal Space調査書のPDFがメールで送られてきた。</p>
+      <p>件名も本文も何もなく、連絡しても返信が返ってこない。</p>
+      <p>元々No.67は桐須さんが報告したLiminal Spaceだったから、差し替えて欲しいとのことだろうか？</p>
+      <p>下野さんや湯田さんもLiminal spaceを報告していたが、特に何も知らないらしい。</p>
+      <br>
+      <p>しかも発見者所感のただならぬ雰囲気。一体何が起こっているんだ？</p>
+      <p>まずは私が桐須さんの力になれないかと思ったが、何もわからなかった。</p>
+      <p>そこで、解職覚悟で第二版から148-149ページを落丁させ、お問い合わせに来た読者にもPDFを見てもらうように仕向けた。</p>
+      <p>減給かな、クビかな。でも桐須さんが助かる確率が少しでも上がるなら僕はそれでいい。</p>
+    </div>
+
+    <button class="back-button" onclick="history.back()">戻る</button>
+
+    <div class="footer-info">
+      狭間書房 内部記録
+    </div>
+  </main>
 
   <footer>
-    狭間書房 内部記録
+    <p>© 2025 狭間書房</p>
   </footer>
 </body>
 </html>
